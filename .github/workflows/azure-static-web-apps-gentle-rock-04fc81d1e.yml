@@ -15,9 +15,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Step 2: Setup Azure CLI (if needed for deployment)
+      # Step 2: Setup Azure CLI (using the latest version v2)
       - name: Set up Azure CLI
-        uses: azure/setup-azure-cli@v1
+        uses: azure/setup-azure-cli@v2
         with:
           azure-cli-version: '2.29.0'
 
