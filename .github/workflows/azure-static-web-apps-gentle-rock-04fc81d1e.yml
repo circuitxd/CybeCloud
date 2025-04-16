@@ -28,16 +28,17 @@ jobs:
         env:
           AZURE_DEPLOYMENT_TOKEN: "9a089a9685e277866c3f63aa9da530e5e0d2e644ee94638069d65e811568e39906-d8d7bcac-2f06-4eb8-9ad9-cb8279c43e9701e191804fc81d1e"  # Replace with your Azure token directly
 
-      # Step 4: Deploy content to Azure (replace with your actual deployment commands)
-      - name: Deploy to Azure
+      # Step 4: Deploy the index.html file to Azure Web App
+      - name: Deploy index.html to Azure Web App
         run: |
-          echo "Deploying content to Azure..."
-          # Replace this with your Azure deployment command, for example using az CLI or any other method
-          az webapp deployment source config-zip --resource-group your-resource-group --name your-app-name --src your-package.zip
+          echo "Deploying index.html to Azure Web App..."
+          # Replace the path with the location of your index.html file in your repository
+          echo "Deploying index.html..."
+          az webapp deploy --resource-group your-resource-group --name your-app-name --src index.html --type static
         env:
           AZURE_DEPLOYMENT_TOKEN: "9a089a9685e277866c3f63aa9da530e5e0d2e644ee94638069d65e811568e39906-d8d7bcac-2f06-4eb8-9ad9-cb8279c43e9701e191804fc81d1e"  # Again, directly embed the token here
 
       # Optional: Step to log completion
       - name: Deployment Complete
         run: |
-          echo "Deployment completed successfully."
+          echo "Deployment of index.html completed successfully."
