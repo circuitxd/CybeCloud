@@ -1,6 +1,5 @@
 name: Azure Deployment
 
-# Trigger the workflow on push to the main branch
 on:
   push:
     branches:
@@ -15,9 +14,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Step 2: Setup Azure CLI (using the latest version v2)
+      # Step 2: Setup Azure CLI (update version here)
       - name: Set up Azure CLI
-        uses: azure/setup-azure-cli@v3
+        uses: azure/setup-azure-cli@v3.0.3
         with:
           azure-cli-version: '2.29.0'
 
@@ -26,17 +25,15 @@ jobs:
         run: |
           echo "${{ secrets.AZURE_DEPLOYMENT_TOKEN }}" | az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password-stdin --tenant ${{ secrets.AZURE_TENANT_ID }}
         env:
-          AZURE_DEPLOYMENT_TOKEN: "9a089a9685e277866c3f63aa9da530e5e0d2e644ee94638069d65e811568e39906-d8d7bcac-2f06-4eb8-9ad9-cb8279c43e9701e191804fc81d1e"  # Replace with your Azure token directly
+          AZURE_DEPLOYMENT_TOKEN: "${{ secrets.AZURE_DEPLOYMENT_TOKEN }}"
 
       # Step 4: Deploy the index.html file to Azure Web App
       - name: Deploy index.html to Azure Web App
         run: |
           echo "Deploying index.html to Azure Web App..."
-          # Replace the path with the location of your index.html file in your repository
-          echo "Deploying index.html..."
           az webapp deploy --resource-group your-resource-group --name your-app-name --src index.html --type static
         env:
-          AZURE_DEPLOYMENT_TOKEN: "9a089a9685e277866c3f63aa9da530e5e0d2e644ee94638069d65e811568e39906-d8d7bcac-2f06-4eb8-9ad9-cb8279c43e9701e191804fc81d1e"  # Again, directly embed the token here
+          AZURE_DEPLOYMENT_TOKEN: "$9a089a9685e277866c3f63aa9da530e5e0d2e644ee94638069d65e811568e39906-d8d7bcac-2f06-4eb8-9ad9-cb8279c43e9701e191804fc81d1e"
 
       # Optional: Step to log completion
       - name: Deployment Complete
