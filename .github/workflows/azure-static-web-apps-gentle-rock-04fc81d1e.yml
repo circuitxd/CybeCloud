@@ -24,3 +24,4 @@ jobs:
           app_location: "."                     # Location of your static app source files (index.html, etc.)
           api_location: ""                      # Leave empty if no backend API
           output_location: ""                   # Leave empty unless using a build tool (e.g. dist, build)
+          skip_deploy_on_missing_secrets: true
